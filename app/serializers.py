@@ -41,12 +41,12 @@ class Categoryserializer(serializers.ModelSerializer):
 class JobSerializer(serializers.ModelSerializer):
     degree=serializers.StringRelatedField()
     company_detail=serializers.SerializerMethodField()
-    # description=serializers.SerializerMethodField()
+    description=serializers.SerializerMethodField()
 
-    # def get_description(self,obj):
-    #     des=JobDetail.objects.filter(job=obj)
-    #     des_data=JobDetailSerializer(des,many=True).data
-    #     return des_data
+    def get_description(self,obj):
+        des=JobDetail.objects.filter(job=obj)
+        des_data=JobDetailSerializer(des,many=True).data
+        return des_data
 
 
     def get_company_detail(self,obj):
@@ -57,4 +57,4 @@ class JobSerializer(serializers.ModelSerializer):
         return cmp_data
     class Meta:
         model=JobList
-        fields=('id','job_category','job_type','post_name','company_detail','degree','is_active','last_date')
+        fields=('id','job_category','job_type','post_name','company_detail','degree','is_active','last_date','description')
