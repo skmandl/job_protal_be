@@ -19,6 +19,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from app import views
 from rest_framework.routers import DefaultRouter
+from rest_framework_simplejwt.views import TokenObtainPairView
+
 
 router = DefaultRouter()
 router.register(r'job_detail',views.JobDetailView),
@@ -28,6 +30,7 @@ router.register(r'job_description',views.DescriptionView),
 
 urlpatterns = [
     path('',include(router.urls)),
+    path('login/',TokenObtainPairView.as_view()),
     path('admin/', admin.site.urls),
     path('new_contact/',views.CreateContact),
     path('get_contact_detail/',views.ContactData)
