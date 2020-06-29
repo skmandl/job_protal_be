@@ -29,6 +29,8 @@ router.register(r'job_description',views.DescriptionView),
 urlpatterns = [
     path('',include(router.urls)),
     path('admin/', admin.site.urls),
+    path('new_contact/',views.CreateContact),
+    path('get_contact_detail/',views.ContactData)
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

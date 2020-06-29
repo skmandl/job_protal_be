@@ -58,3 +58,19 @@ class JobSerializer(serializers.ModelSerializer):
     class Meta:
         model=JobList
         fields=('id','job_category','job_type','post_name','company_detail','degree','is_active','last_date','description')
+
+class ContactSerializer(serializers.ModelSerializer):
+    first_name=serializers.SerializerMethodField()
+    last_name=serializers.SerializerMethodField()
+    email=serializers.SerializerMethodField()
+    phone=serializers.SerializerMethodField()
+
+    def get_first_name(self,obj):
+        return obj.first_name
+    def get_last_name(self,obj):
+        return obj.last_name
+    def get_email(self,obj):
+        return obj.email
+    class Meta:
+        model=Contact
+        fields=('first_name','last_name','email','phone')
